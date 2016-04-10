@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 
@@ -39,15 +41,28 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
+		try { 
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (UnsupportedLookAndFeelException ex) {
+			ex.printStackTrace();
+		} catch (IllegalAccessException ex) {
+			ex.printStackTrace();
+		} catch (InstantiationException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 225, 300);
+		setBounds(100, 100, 389, 265);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Agendar por horas restantes:");
-		lblNewLabel.setBounds(10, 11, 156, 14);
+		lblNewLabel.setBounds(10, 11, 255, 14);
 		contentPane.add(lblNewLabel);
 		
 		textField = new JTextField();
@@ -62,21 +77,21 @@ public class Menu extends JFrame {
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Hora");
 		rdbtnNewRadioButton.setSelected(true);
 		tipo.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setBounds(10, 64, 49, 23);
+		rdbtnNewRadioButton.setBounds(6, 64, 86, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnMinuto = new JRadioButton("Minuto");
 		tipo.add(rdbtnMinuto);
-		rdbtnMinuto.setBounds(61, 64, 57, 23);
+		rdbtnMinuto.setBounds(94, 64, 86, 23);
 		contentPane.add(rdbtnMinuto);
 		
 		JRadioButton rdbtnSegundo = new JRadioButton("Segundo");
 		tipo.add(rdbtnSegundo);
-		rdbtnSegundo.setBounds(116, 64, 109, 23);
+		rdbtnSegundo.setBounds(182, 64, 109, 23);
 		contentPane.add(rdbtnSegundo);
 		
 		JLabel lblNewLabel_1 = new JLabel("Agendar por horario:");
-		lblNewLabel_1.setBounds(10, 94, 108, 14);
+		lblNewLabel_1.setBounds(10, 94, 229, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		txtHoraminutosegundo = new JTextField();
@@ -90,7 +105,7 @@ public class Menu extends JFrame {
 		contentPane.add(btnAgendar);
 		
 		JButton btnNewButton_1 = new JButton("Anular!");
-		btnNewButton_1.setBounds(10, 177, 89, 23);
+		btnNewButton_1.setBounds(10, 150, 89, 23);
 		contentPane.add(btnNewButton_1);
 	}
 }
