@@ -99,26 +99,26 @@ public class Menu extends JFrame {
 		rdHora = new JRadioButton("Hora");
 		rdHora.setSelected(true);
 		tipo.add(rdHora);
-		rdHora.setBounds(6, 89, 86, 23);
+		rdHora.setBounds(10, 63, 86, 23);
 		contentPane.add(rdHora);
 		
 		rdMinuto = new JRadioButton("Minuto");
 		tipo.add(rdMinuto);
-		rdMinuto.setBounds(94, 89, 86, 23);
+		rdMinuto.setBounds(98, 63, 86, 23);
 		contentPane.add(rdMinuto);
 		
 		rdSegundo = new JRadioButton("Segundo");
 		tipo.add(rdSegundo);
-		rdSegundo.setBounds(182, 89, 109, 23);
+		rdSegundo.setBounds(186, 63, 109, 23);
 		contentPane.add(rdSegundo);
 		
 		JLabel lblNewLabel_1 = new JLabel("Agendar por horario:");
-		lblNewLabel_1.setBounds(10, 119, 229, 14);
+		lblNewLabel_1.setBounds(10, 93, 229, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		txtHoraminutosegundo = new JTextField();
 		txtHoraminutosegundo.setText("hh:mm:ss");
-		txtHoraminutosegundo.setBounds(10, 144, 86, 20);
+		txtHoraminutosegundo.setBounds(10, 118, 86, 20);
 		contentPane.add(txtHoraminutosegundo);
 		txtHoraminutosegundo.setColumns(10);
 		
@@ -128,7 +128,7 @@ public class Menu extends JFrame {
 				agendarHora();
 			}
 		});
-		btnAgendar.setBounds(106, 144, 89, 23);
+		btnAgendar.setBounds(106, 118, 89, 23);
 		contentPane.add(btnAgendar);
 		
 		JButton btAnular = new JButton("Anular!");
@@ -143,13 +143,17 @@ public class Menu extends JFrame {
 		rdDesligar = new JRadioButton("Desligar");
 		rdDesligar.setSelected(true);
 		escolha.add(rdDesligar);
-		rdDesligar.setBounds(6, 63, 90, 23);
+		rdDesligar.setBounds(297, 35, 90, 23);
 		contentPane.add(rdDesligar);
 		
 		rdReiniciar = new JRadioButton("Reiniciar");
 		escolha.add(rdReiniciar);
-		rdReiniciar.setBounds(94, 63, 80, 23);
+		rdReiniciar.setBounds(297, 63, 80, 23);
 		contentPane.add(rdReiniciar);
+		
+		JLabel lblEscolha = new JLabel("Escolha:");
+		lblEscolha.setBounds(297, 11, 46, 14);
+		contentPane.add(lblEscolha);
 	}
 	
 	private void agendarTempoRestante(){
