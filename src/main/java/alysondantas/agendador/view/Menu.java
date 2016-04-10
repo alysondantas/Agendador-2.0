@@ -6,20 +6,37 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import main.java.alysondantas.agendador.controller.Controller;
+import main.java.alysondantas.agendador.exceptions.HoraInvalidaException;
+import main.java.alysondantas.agendador.exceptions.SONaoIdentificadoException;
+import main.java.alysondantas.agendador.exceptions.TipoInvalidoException;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame {
-
+	
+	private Controller controller = new Controller();
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField tfTempo;
 	private final ButtonGroup tipo = new ButtonGroup();
+	private JRadioButton rdHora;
+	private JRadioButton rdMinuto;
+	private JRadioButton rdSegundo;
 	private JTextField txtHoraminutosegundo;
+	private final ButtonGroup escolha = new ButtonGroup();
+	private JRadioButton rdDesligar;
+	private JRadioButton rdReiniciar;
 
 	/**
 	 * Launch the application.
@@ -65,47 +82,133 @@ public class Menu extends JFrame {
 		lblNewLabel.setBounds(10, 11, 255, 14);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 36, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfTempo = new JTextField();
+		tfTempo.setBounds(10, 36, 86, 20);
+		contentPane.add(tfTempo);
+		tfTempo.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Agendar!");
-		btnNewButton.setBounds(106, 35, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton btAgendar1 = new JButton("Agendar!");
+		btAgendar1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				agendarTempoRestante();
+			}
+		});
+		btAgendar1.setBounds(106, 35, 89, 23);
+		contentPane.add(btAgendar1);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Hora");
-		rdbtnNewRadioButton.setSelected(true);
-		tipo.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setBounds(6, 64, 86, 23);
-		contentPane.add(rdbtnNewRadioButton);
+		rdHora = new JRadioButton("Hora");
+		rdHora.setSelected(true);
+		tipo.add(rdHora);
+		rdHora.setBounds(6, 89, 86, 23);
+		contentPane.add(rdHora);
 		
-		JRadioButton rdbtnMinuto = new JRadioButton("Minuto");
-		tipo.add(rdbtnMinuto);
-		rdbtnMinuto.setBounds(94, 64, 86, 23);
-		contentPane.add(rdbtnMinuto);
+		rdMinuto = new JRadioButton("Minuto");
+		tipo.add(rdMinuto);
+		rdMinuto.setBounds(94, 89, 86, 23);
+		contentPane.add(rdMinuto);
 		
-		JRadioButton rdbtnSegundo = new JRadioButton("Segundo");
-		tipo.add(rdbtnSegundo);
-		rdbtnSegundo.setBounds(182, 64, 109, 23);
-		contentPane.add(rdbtnSegundo);
+		rdSegundo = new JRadioButton("Segundo");
+		tipo.add(rdSegundo);
+		rdSegundo.setBounds(182, 89, 109, 23);
+		contentPane.add(rdSegundo);
 		
 		JLabel lblNewLabel_1 = new JLabel("Agendar por horario:");
-		lblNewLabel_1.setBounds(10, 94, 229, 14);
+		lblNewLabel_1.setBounds(10, 119, 229, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		txtHoraminutosegundo = new JTextField();
 		txtHoraminutosegundo.setText("hh:mm:ss");
-		txtHoraminutosegundo.setBounds(10, 119, 86, 20);
+		txtHoraminutosegundo.setBounds(10, 144, 86, 20);
 		contentPane.add(txtHoraminutosegundo);
 		txtHoraminutosegundo.setColumns(10);
 		
 		JButton btnAgendar = new JButton("Agendar!");
-		btnAgendar.setBounds(106, 119, 89, 23);
+		btnAgendar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				agendarHora();
+			}
+		});
+		btnAgendar.setBounds(106, 144, 89, 23);
 		contentPane.add(btnAgendar);
 		
-		JButton btnNewButton_1 = new JButton("Anular!");
-		btnNewButton_1.setBounds(10, 150, 89, 23);
-		contentPane.add(btnNewButton_1);
+		JButton btAnular = new JButton("Anular!");
+		btAnular.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				anular();
+			}
+		});
+		btAnular.setBounds(10, 202, 89, 23);
+		contentPane.add(btAnular);
+		
+		rdDesligar = new JRadioButton("Desligar");
+		rdDesligar.setSelected(true);
+		escolha.add(rdDesligar);
+		rdDesligar.setBounds(6, 63, 90, 23);
+		contentPane.add(rdDesligar);
+		
+		rdReiniciar = new JRadioButton("Reiniciar");
+		escolha.add(rdReiniciar);
+		rdReiniciar.setBounds(94, 63, 80, 23);
+		contentPane.add(rdReiniciar);
+	}
+	
+	private void agendarTempoRestante(){
+		JOptionPane.showMessageDialog(null, "Ainda não testado em linux!");
+		boolean verificador = false;
+		try{
+			String teste = tfTempo.getText();
+			int hora = Integer.parseInt(teste) ;
+			int tip=0;
+			int escolha=0;
+			if(rdHora.isSelected()){
+				tip = 1;
+			}else if(rdMinuto.isSelected()){
+				tip = 2;
+			}else if(rdSegundo.isSelected()){
+				tip = 3;
+			}
+			if(rdDesligar.isSelected()){
+				escolha = 1;
+			}else if(rdReiniciar.isSelected()){
+				escolha = 2;
+			}
+			
+			verificador = controller.agendarTempo(hora, tip, escolha);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}catch(HoraInvalidaException e){
+			JOptionPane.showMessageDialog(null, "Hora Invalida!");
+			e.printStackTrace();
+		}catch(SONaoIdentificadoException e){
+			JOptionPane.showMessageDialog(null, "Erro ao identificar SO!");
+			e.printStackTrace();
+		}catch(TipoInvalidoException e){
+			JOptionPane.showMessageDialog(null, "Tipo Selecionado invalido!");
+			e.printStackTrace();
+		}
+		if(verificador == false){
+			JOptionPane.showMessageDialog(null, "Erro ao agendar!");
+		}
+	}
+	
+	private void agendarHora(){
+		JOptionPane.showMessageDialog(null, "Ainda não implementado!");
+		
+	}
+	
+	private void anular(){
+		JOptionPane.showMessageDialog(null, "Ta quase pronto!");
+		boolean verificador = false;
+		try{
+			verificador = controller.anular();
+		}catch(IOException e){
+			e.printStackTrace();
+		}catch(SONaoIdentificadoException e){
+			JOptionPane.showMessageDialog(null, "Erro ao identificar SO!");
+			e.printStackTrace();
+		}
+		if(verificador == false){
+			JOptionPane.showMessageDialog(null, "Erro ao anular!");
+		}
 	}
 }
