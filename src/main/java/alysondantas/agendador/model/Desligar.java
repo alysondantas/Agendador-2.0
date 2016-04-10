@@ -6,7 +6,7 @@ import main.java.alysondantas.agendador.exceptions.*;
 
 public class Desligar {
 	public Desligar(){
-		
+
 	}
 	public boolean deligarPorTempoRestante(int hora, int so, int escolha) throws HoraInvalidaException, IOException, SONaoIdentificadoException{
 		if(hora<=0){
@@ -25,33 +25,33 @@ public class Desligar {
 		String comandoLinux = "shutdown -h ";
 		String comando = "";
 		int tempo = hora;
-		
+
 		switch (so){
-			case 0:
-				if(escolha == 1){
-					tempo = tempo * 60;
-					tempo = tempo * 60;
-				}else if(escolha == 2){
-					tempo = tempo * 60;
-				}
-				
-				comando = comandoWin + tempo;
-				break;
-			case 1:
-				if(escolha == 1){
-					tempo = tempo * 60;
-				}else if(escolha !=2){
-					tempo = tempo / 60;
-				}
-				comando = comandoLinux + tempo;
-				break;
-			default:
-				throw new SONaoIdentificadoException();
+		case 0:
+			if(escolha == 1){
+				tempo = tempo * 60;
+				tempo = tempo * 60;
+			}else if(escolha == 2){
+				tempo = tempo * 60;
+			}
+
+			comando = comandoWin + tempo;
+			break;
+		case 1:
+			if(escolha == 1){
+				tempo = tempo * 60;
+			}else if(escolha !=2){
+				tempo = tempo / 60;
+			}
+			comando = comandoLinux + tempo;
+			break;
+		default:
+			throw new SONaoIdentificadoException();
 		}
 		Runtime.getRuntime().exec(comando);
 		return true;
 	}
-	
+
 	public boolean reiniciarPorTempoRestante(int hora, int so, int escolha) throws HoraInvalidaException, IOException, SONaoIdentificadoException{
 		if(hora<=0){
 			throw new HoraInvalidaException();
@@ -69,33 +69,33 @@ public class Desligar {
 		String comandoLinux = "shutdown -r ";
 		String comando = "";
 		int tempo = hora;
-		
+
 		switch (so){
-			case 0:
-				if(escolha == 1){
-					tempo = tempo * 60;
-					tempo = tempo * 60;
-				}else if(escolha == 2){
-					tempo = tempo * 60;
-				}
-				
-				comando = comandoWin + tempo;
-				break;
-			case 1:
-				if(escolha == 1){
-					tempo = tempo * 60;
-				}else if(escolha !=2){
-					tempo = tempo / 60;
-				}
-				comando = comandoLinux + tempo;
-				break;
-			default:
-				throw new SONaoIdentificadoException();
+		case 0:
+			if(escolha == 1){
+				tempo = tempo * 60;
+				tempo = tempo * 60;
+			}else if(escolha == 2){
+				tempo = tempo * 60;
+			}
+
+			comando = comandoWin + tempo;
+			break;
+		case 1:
+			if(escolha == 1){
+				tempo = tempo * 60;
+			}else if(escolha !=2){
+				tempo = tempo / 60;
+			}
+			comando = comandoLinux + tempo;
+			break;
+		default:
+			throw new SONaoIdentificadoException();
 		}
 		Runtime.getRuntime().exec(comando);
 		return true;
 	}
-	
+
 	public boolean anular(int so) throws IOException, SONaoIdentificadoException{
 		switch (so){
 		case 0:
@@ -106,8 +106,8 @@ public class Desligar {
 			break;
 		default:
 			throw new SONaoIdentificadoException();
+		}
+
+		return true;
 	}
-	
-	return true;
-}
 }
