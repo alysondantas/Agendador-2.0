@@ -1,6 +1,8 @@
 package main.java.alysondantas.agendador.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -11,6 +13,7 @@ import main.java.alysondantas.agendador.model.Desligar;
 
 public class Controller {
 	int so = 2;
+	String horario = "";
 	Desligar agendar = new Desligar();
 	public Controller(){
 		JOptionPane.showMessageDialog(null, "Verificando SO!");
@@ -22,6 +25,10 @@ public class Controller {
 		}else if(nome.substring(0, 5).equals("Linux")){
 			so = 1;
 		}
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+		String horario = sdf.format(new Date());
+		this.horario=horario;
+		JOptionPane.showMessageDialog(null, horario);
 	}
 	
 	public boolean agendarTempo(int hora, int tipo, int escolha) throws HoraInvalidaException, IOException, SONaoIdentificadoException, TipoInvalidoException{
