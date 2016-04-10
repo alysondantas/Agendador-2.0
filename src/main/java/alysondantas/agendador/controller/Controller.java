@@ -6,10 +6,10 @@ import main.java.alysondantas.agendador.exceptions.HoraInvalidaException;
 import main.java.alysondantas.agendador.exceptions.SONaoIdentificadoException;
 import main.java.alysondantas.agendador.model.Desligar;
 
-public class controller {
+public class Controller {
 	int so = 2;
 	Desligar agendar = new Desligar();
-	public controller(){
+	public Controller(){
 		String nome = System.getProperty("os.name");
 		System.out.println(nome);
 		if(nome.substring(0, 7).equals("Windows")){
