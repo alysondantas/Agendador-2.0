@@ -27,6 +27,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class Menu extends JFrame {
 
@@ -65,6 +66,8 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
+		super("Agendador 2.0 AD");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Menu.class.getResource("/main/java/alysondantas/agendador/imgs/144.png")));
 		try { 
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (UnsupportedLookAndFeelException ex) {
