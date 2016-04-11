@@ -151,6 +151,12 @@ public class Menu extends JFrame {
 		txtHora.setColumns(10);
 
 		textMinuto = new JTextField();
+		textMinuto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				textMinuto.setText("");
+			}
+		});
 		SimpleDateFormat sdf2 = new SimpleDateFormat("mm");
 		textMinuto.setText(sdf2.format(new Date()));
 		textMinuto.setBounds(41, 118, 21, 20);
@@ -158,6 +164,12 @@ public class Menu extends JFrame {
 		textMinuto.setColumns(10);
 
 		textSegundo = new JTextField();
+		textSegundo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				textSegundo.setText("");
+			}
+		});
 		SimpleDateFormat sdf3 = new SimpleDateFormat("ss");
 		textSegundo.setText(sdf3.format(new Date()));
 		textSegundo.setBounds(72, 118, 21, 20);
